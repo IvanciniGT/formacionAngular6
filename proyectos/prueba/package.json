@@ -1,0 +1,22 @@
+{
+  "name": "groupID/prueba",
+  "version": "1.0.0",
+  "description": "Super prueba de node con npom y JS",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "federico": "node src/federico.js",
+    "compile": "tsc"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies":{
+    "jasmine": "^6.3.0",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1"
+  }
+}

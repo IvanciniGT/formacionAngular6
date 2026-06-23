@@ -23,7 +23,7 @@ Lo segundo que se ejecuta: String texto   Crea una variable llamada "texto" que 
 Lo último que se ejecuta: =                y pego el postit en el cuaderno, al lado del valor "hola".
 
 > String texto = "hola";
-               ->
+               
 X Estoy asignando la palabra "hola" a la variable "texto".
 √ Estoy asignando la variable texto al valor hola, que tengo en RAM.
 
@@ -386,6 +386,7 @@ Hay muchos paradigmas de programación:
                             Para qué? Que aporta?
                             - Reutilizar código
                             - Organizar el código/Mejorar legibilidad -> Mejorar mantenibilidad
+                            - Cuando usamos programación funcional: Por narices... porque tengo que llamar a una función que requiere otra función como argumento... pues tengo que crearla esa nueva función.
 - Orientación a objetos     Todo lenguaje permite manejar tipos de datos.
                             En base a su tipo de datos, un dato tiene unas características y unas operaciones soportadas:
 
