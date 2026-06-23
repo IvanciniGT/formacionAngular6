@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuarioComponent } from '../usuario/usuario';
 
 // Quiero mi propia marca HTML
 // La marca se llama app-root
@@ -8,7 +9,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  imports: [UsuarioComponent]
 })
 export class App {
   // Tiene código? NO.

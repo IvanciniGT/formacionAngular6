@@ -1,0 +1,7 @@
+
+<div class="usuario-compacto"> <!-- Este atributo lo rellenaré en funcion de un atributo que voy a definir en mi marca custom app-usuario: mode-->
+    <img [src]="this.usuario.foto" class="foto" /> <!-- [atributo] -> El valor del atributo no se debe interpretar literalmente, sino como una expresión de JS/TS -->
+    <div class="nombre">  {{ this.usuario.nombre }}    </div>
+    <div class="apellido">{{ this.usuario.apellidos }} </div>
+    <div class="email">   {{ this.usuario.email }}     </div>
+</div>

@@ -1,0 +1,85 @@
+div {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+.usuario-extendido {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    /*Separar columnas del grid */
+    column-gap: 10px;
+    /* Quiero los elementos internos alineados verticalemnte al centro? */
+    align-items: center;
+}
+.usuario-compacto {
+    display: grid;
+    grid-template-columns: 25px auto 1fr;
+    padding: 5px;
+    margin: 10px 0;
+    /*Separar columnas del grid */
+    column-gap: 5px;
+    /* Quiero los elementos internos alineados verticalemnte al centro? */
+    align-items: center;
+}
+.usuario-extendido .foto {
+    width: 75px;
+    height: 75px;
+    grid-row: 1 / span 3;
+    grid-column: 1;
+    object-fit: cover;
+    object-position: center;
+}
+.usuario-compacto .foto {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    grid-row: 1;
+    grid-column: 1;
+    object-fit: cover;
+    object-position: center;
+}
+.nombre {
+    grid-row: 1;
+    grid-column: 2;
+    font-weight: bold;
+}
+.usuario-extendido .nombre:before {
+    content: "Nombre: ";
+    font-weight: normal;
+    width: 60px;
+    display: inline-block;
+}
+.usuario-extendido .apellido {
+    grid-row: 2;
+    grid-column: 2;
+    font-weight: bold;
+}
+.usuario-compacto .apellido {
+    grid-row: 1;
+    grid-column: 3;
+    font-weight: bold;
+}
+.usuario-extendido .apellido:before {
+    content: "Apellido: ";
+    font-weight: normal;
+    width: 60px;   
+    display: inline-block;
+}
+.usuario-extendido .email {
+    grid-row: 3;
+    grid-column: 2;
+    color: #000088;
+}
+.usuario-extendido .email:before {
+    content: "Email: ";
+    color: #000000;
+    width: 60px;
+    display: inline-block;
+}
+.usuario-compacto .email {
+    display: none;
+}
