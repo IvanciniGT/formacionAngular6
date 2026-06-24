@@ -28,3 +28,27 @@ export class UsuarioComponent {
     @Input() extensible: boolean = false;
 }
 ```
+
+# Operadores en TS
+
+    =    Asignación
+
+    let numero = 4;
+
+    ==  Comparación de igualdad (valor) ignorando el tipo de dato
+
+    let texto = "4";
+
+     numero == texto // true
+       Los tipos de datos de numero y texto son diferentes. Uno es un número y otro un texto.
+       Pero si convirtiera el tipo de dato de uno al del otro (numero-> string o texto->number), entonces serían iguales.
+
+    ===  Comparación de igualdad estricta (valor y tipo de dato)
+
+        numero === texto // false
+        Los tipos de datos de numero y texto son diferentes. Uno es un número y otro un texto. Por lo tanto, no son estrictamente iguales.
+
+
+    CONDICION ? VALOR_SI_VERDADERO : VALOR_SI_FALSO
+
+        Operador ternario. Es un if como una expresión.

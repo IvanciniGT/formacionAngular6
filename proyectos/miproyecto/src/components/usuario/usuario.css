@@ -1,6 +1,13 @@
 div {
     font-family: 'Arial', sans-serif;
     font-size: 14px;
+    /* Evitar que el texto se pueda seleccionar con el ratón */
+    user-select: none;
+}
+
+.clickable {
+    /*Le metemos el icono de la manita al raton cuando pase por encima del div */
+    cursor: pointer;
 }
 
 .usuario-extendido {
