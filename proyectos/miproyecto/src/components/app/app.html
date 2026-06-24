@@ -23,9 +23,9 @@
     @if(this.usuario2){
         <app-usuario [usuario]="this.usuario2" mode="compact" [extensible]="false"></app-usuario>
     }
-    @if(this.usuario3){
-        <app-usuario [usuario]="this.usuario3" mode="extended"></app-usuario>
+    @if(this.usuario3(); as datosRecibidos){
+        <app-usuario [usuario]="datosRecibidos" mode="extended"></app-usuario>
     }
-    @if(this.usuario4){
-        <app-usuario [usuario]="this.usuario4" mode="compact"></app-usuario>
+    @if(this.usuario4$ | async; as datosRecibidos){
+        <app-usuario [usuario]="datosRecibidos" mode="compact"></app-usuario>
     }
