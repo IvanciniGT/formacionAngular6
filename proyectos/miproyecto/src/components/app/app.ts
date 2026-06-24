@@ -4,6 +4,7 @@ import { Usuario } from '../../models/usuario.model';
 import { UsuariosService } from '../../services/usuarios/usuarios.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { ListadoUsuariosComponent } from '../listado-usuarios/listado-usuarios';
 
 // Quiero mi propia marca HTML
 // La marca se llama app-root
@@ -14,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [UsuarioComponent, AsyncPipe],
+  imports: [UsuarioComponent, AsyncPipe, ListadoUsuariosComponent],
 })
 export class App {
   // Tiene código? NO.
@@ -32,9 +33,6 @@ export class App {
   usuario4$:Observable<Usuario>;
     // SOLEMOS POR CONVENCION llamar a las variables que contienen un observable con el signo $ al final.
     // No aporta nada funcional.
-
-
-  listadoUsuarios=signal<Usuario[]|undefined>(undefined);
   errorAlCargarLosDatosDeLosUsuarios=signal<boolean>(false);
 
 
@@ -76,17 +74,6 @@ export class App {
     // La sintaxis del Observable es más simple, pero me ofrece menos control sobre el flujo de datos.
     // Por ejemplo, si lo que recibo no es un valor, sino un error.
 
-
-    this.usuariosService.getDatosDeTodosLosUsuarios().subscribe({
-      next: (usuarios: Usuario[]) => {
-        console.log("Datos de todos los usuarios obtenidos correctamente", usuarios);
-        this.listadoUsuarios.set(usuarios)
-      },
-      error: (error: any) => {
-        console.error("Error al obtener los datos de todos los usuarios", error);
-        this.errorAlCargarLosDatosDeLosUsuarios.set(true);
-      },
-    });
   }
 
 }

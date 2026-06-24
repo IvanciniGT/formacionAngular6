@@ -34,13 +34,6 @@
     }
 
 
-    <h2> Listado de todos los usuarios</h2>
-
-    @if(this.listadoUsuarios(); as datosRecibidos){
-        @for(usuario of datosRecibidos; track usuario.id){
-            <app-usuario [usuario]="usuario" mode="extended" [extensible]="true"></app-usuario>
-        }
-    }@else{
-        <p> Cargando los usuarios</p>
-    }
 }
+
+<app-listado-usuarios></app-listado-usuarios>

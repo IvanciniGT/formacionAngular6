@@ -141,4 +141,27 @@ En backend SPRING, .net, los grandes frameworks de backend, nos invitan (obligan
 
                         DESARROLLADOR JUNIOR ---> DESARROLLOR SENIOR ---> ARQUITECTO DE SOFTWARE
                         --------------------------------------------
-                        
+
+
+Aplicación de solicitud de días libres de un empleado.
+
+- COMPONENTE APLICACION.
+- Componente menu
+- Componente formulario de solicitud de días libres
+- Componente para ver los detalles de una solicitud de días libres que se ha hecho.
+- Componente para aprobar o rechazar una solicitud de días libres que se ha hecho.
+- Componente listado de solicitudes de días libres que se han hecho por empleados y que yo tengo que aprobar o rechazar.
+- Componente para cada fila del listado de solicitudes de días libres que se han hecho por empleados y que yo tengo que aprobar o rechazar.
+- Componente listado de solicitudes de días libres que yo he hecho.. para ver en que estado están.
+- Tengo un componente para cada fila del listado de solicitudes de días libres que yo he hecho.
+- Componente TOAST para notificaciones al usuario: Se está grabando la solicitud de días libres, se ha grabado correctamente, se ha producido un error al grabar la solicitud de días libres, etc.  
+- Componente para la configuración de la aplicación: Configuración de los días libres que se pueden solicitar, configuración de los tipos de días libres que se pueden solicitar, etc.
+
+    Componente App
++------------------------------------+
+| Menu           |                   |
+|  Nueva         |    Cargo          |
+|  Seguimiento   |    componentes    |
+|  Por aprobar   |    dinamicamente  |
+|  Configuración |                   |
++------------------------------------+ 
