@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Usuario } from "../../models/usuario.model";
 import { UsuariosService } from "./usuarios.service";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { delay, Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root' // Esto hace que Angular cree una instancia de esta clase y la ponga a disposición de toda la aplicación. Y que esa instancia sea única. Es un Singleton.
@@ -17,7 +17,16 @@ export class UsuariosServiceImpl extends UsuariosService {
     }
 
     getDatosUsuario(id: string): Observable<Usuario> {
-        return this.httpClient.get<Usuario>(this.urlBase+"/"+id); // Hacemos la llamada al backend y le decimos que nos devuelva un objeto de tipo Usuario.
+        return this.httpClient.get<Usuario>(this.urlBase+"/"+id).pipe(
+            delay(3000) // Forzamos una demora de 10 segundos en la peticion para que de tiempo a ver los mensajes
+        );  
+    }
+
+    getDatosDeTodosLosUsuarios(): Observable<Usuario[]>{
+        // Vamos a forzar una demora de 10 segundos en la peticion para que de tiempo a ver los mensajes
+        return this.httpClient.get<Usuario[]>(this.urlBase).pipe(
+            delay(3000) // Forzamos una demora de 10 segundos en la peticion para que de tiempo a ver los mensajes
+        );
     }
 
 }

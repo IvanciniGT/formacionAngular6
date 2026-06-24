@@ -33,23 +33,37 @@ export class App {
     // SOLEMOS POR CONVENCION llamar a las variables que contienen un observable con el signo $ al final.
     // No aporta nada funcional.
 
+
+  listadoUsuarios=signal<Usuario[]|undefined>(undefined);
+  errorAlCargarLosDatosDeLosUsuarios=signal<boolean>(false);
+
+
   constructor(private readonly usuariosService: UsuariosService) {
      const ticket: Observable<Usuario> = this.usuariosService.getDatosUsuario("1");
      ticket.subscribe({
       next: (usuario: Usuario) => this.usuario1 = usuario ,
-      error: (error: any) => console.error("Error al obtener los datos del usuario 1", error),
+      error: (error: any) => {
+        console.error("Error al obtener los datos del usuario 1", error);
+        this.errorAlCargarLosDatosDeLosUsuarios.set(true);
+      },
     });
 
     this.usuariosService.getDatosUsuario("2").subscribe({
       next: (usuario: Usuario) => this.usuario2 = usuario,
-      error: (error: any) => console.error("Error al obtener los datos del usuario 2", error),
+      error: (error: any) => {
+        console.error("Error al obtener los datos del usuario 2", error);
+        this.errorAlCargarLosDatosDeLosUsuarios.set(true);
+      },
     });
     this.usuariosService.getDatosUsuario("3").subscribe({
       next: (usuario: Usuario) => this.usuario3.set(usuario),
                                               // Al llamar a la función set de un signal,
                                               // Angular es notificado de que la variable ha cambiado de valor 
                                               // y repinta el componente para reflejar los cambios en pantalla.
-      error: (error: any) => console.error("Error al obtener los datos del usuario 3", error),
+      error: (error: any) => {
+        console.error("Error al obtener los datos del usuario 3", error);
+        this.errorAlCargarLosDatosDeLosUsuarios.set(true);
+      },
     });
     this.usuario4$ = this.usuariosService.getDatosUsuario("4");
     // En este caso, las actualizaciones de valores son asíncronas.
@@ -61,6 +75,18 @@ export class App {
     // FORMA 2: Usar signals. 
     // La sintaxis del Observable es más simple, pero me ofrece menos control sobre el flujo de datos.
     // Por ejemplo, si lo que recibo no es un valor, sino un error.
+
+
+    this.usuariosService.getDatosDeTodosLosUsuarios().subscribe({
+      next: (usuarios: Usuario[]) => {
+        console.log("Datos de todos los usuarios obtenidos correctamente", usuarios);
+        this.listadoUsuarios.set(usuarios)
+      },
+      error: (error: any) => {
+        console.error("Error al obtener los datos de todos los usuarios", error);
+        this.errorAlCargarLosDatosDeLosUsuarios.set(true);
+      },
+    });
   }
 
 }

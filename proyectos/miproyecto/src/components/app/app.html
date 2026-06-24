@@ -2,6 +2,9 @@
 <h1>Soy el super titulo de la aplicación</h1>
 <p>Esta aplicación hace cosas guays</p>
 
+@if(this.errorAlCargarLosDatosDeLosUsuarios()){
+    <p>Ha habido un error al cargar los datos de los usuarios</p>
+}@else{
 <!-- Solo querré sacar los datos de los usuarios cuando estén disponibles -->
 <!-- Necesitamos un condicional -->
 <!-- Antiguamente en angular existía lo que se llamaba una directica: @ngIf que podíamos aplicar a los elementos:
@@ -29,3 +32,15 @@
     @if(this.usuario4$ | async; as datosRecibidos){
         <app-usuario [usuario]="datosRecibidos" mode="compact"></app-usuario>
     }
+
+
+    <h2> Listado de todos los usuarios</h2>
+
+    @if(this.listadoUsuarios(); as datosRecibidos){
+        @for(usuario of datosRecibidos; track usuario.id){
+            <app-usuario [usuario]="usuario" mode="extended" [extensible]="true"></app-usuario>
+        }
+    }@else{
+        <p> Cargando los usuarios</p>
+    }
+}
