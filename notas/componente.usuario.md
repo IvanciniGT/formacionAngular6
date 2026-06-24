@@ -63,3 +63,17 @@ Datos?
     +-------------------+
     |  F  | Juan Pérez  |
     +-------------------+
+
+
+{ 
+    'usuario-extendido': true , 
+    'usuario-compacto': false
+}
+
+{
+      id: '4',
+      nombre: 'Federico',
+      apellidos: 'Pérez',
+      foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt1ITs_hgsdCzhKoOZ6eIDl9x--VqbbSHqgwAyA8T2NA&s=10',
+      email: 'juanito@perez.com'
+  }
