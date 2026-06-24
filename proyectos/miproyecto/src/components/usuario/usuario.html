@@ -4,9 +4,9 @@
                     'usuario-compacto':  this.mode == 'compact'
      }">--> <!-- Este atributo lo rellenaré en funcion de un atributo que voy a definir en mi marca custom app-usuario: mode-->
 <div 
-    [class.usuario-extendido]="this.mode == 'extended'"
-    [class.usuario-compacto] ="this.mode == 'compact'"
-    [class.clickable] ="this.extensible"
+    [class.usuario-extendido]= "this.mode == 'extended'"
+    [class.usuario-compacto] = "this.mode == 'compact'"
+    [class.clickable] = "this.extensible"
     (click)="this.extensible ? this.toogleMode() : null"
 >
     <img [src]="this.usuario.foto" class="foto" /> <!-- [atributo] -> El valor del atributo no se debe interpretar literalmente, sino como una expresión de JS/TS -->

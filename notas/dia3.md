@@ -52,3 +52,17 @@ export class UsuarioComponent {
     CONDICION ? VALOR_SI_VERDADERO : VALOR_SI_FALSO
 
         Operador ternario. Es un if como una expresión.
+
+
+---
+
+FRONTAL                                                 Backend
+                        ----- http Request ----------->
+                        <---- httpResponse (JSON) -----
+    Componentes Web                                     Servicio WEB <--------->  BBDD
+        App
+        Usuario
+
+Montar un backend para pruebas.. por lo menos le estimo 4 o 5 minutos.
+
+Vamos a usar JSON-SERVER. Nos permite montar FAKES de backends RESTful en 5 minutos. Nos permite hacer pruebas de front sin tener que montar un backend real.
