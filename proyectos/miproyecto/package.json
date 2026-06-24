@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev:backend": "json-server --watch dev/backend.json",
+    "dev": "concurrently \"npm run dev:backend\" \"npm start\""
   },
   "private": true,
   "packageManager": "npm@11.13.0",

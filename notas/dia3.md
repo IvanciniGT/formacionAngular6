@@ -66,3 +66,79 @@ FRONTAL                                                 Backend
 Montar un backend para pruebas.. por lo menos le estimo 4 o 5 minutos.
 
 Vamos a usar JSON-SERVER. Nos permite montar FAKES de backends RESTful en 5 minutos. Nos permite hacer pruebas de front sin tener que montar un backend real.
+
+---
+
+Los tiempos han cambiado... Y las arquitecturas y patrones de desarrollo y diseños también Y MUCHO!
+Le damos una importancia EXTRAORDINARIA a hacer código fácil de mantener y de evolucionar.
+NO QUEREMOS MONOLITOS.
+NO QUEREMOS COMPONENTES ACOPLADOS.
+
+Por eso aplicamos ciertos principios de desarrollo de software y ciertas arquitecturas.
+
+Un backend hoy en día se monta con una determina arquitectura...
+Ya no escribo un JSP(ASP, PHP) en el que genero HTML, llamo a la BBDD, meto lógica de negocio, amndo un email = DESASTRE ABSOLUTO RUINOSO 100%
+
+En backend SPRING, .net, los grandes frameworks de backend, nos invitan (obligan) a utilizar ciertas arquitecturas.
+
+    BACKEND                                                                                 FRONTAL
+    ------------------------------------------------------------------------------------    ------------------------------------------------
+
+    BBDD   <---                                                Servicio Web                   Formulario Usuario
+                                                                    .jsp                      <form action="http://localhost:8080/altaUsuario.jsp" 
+                                                                    .asp                                 method="POST">
+                                                                    .servlet            
+
+    ANTIGUAMENTE ^^^^^ APESTA !!!! YA NO!
+
+
+    HOY EN DIA !!!!!
+
+    Aplicar ciertos principios de desarrollo de software y ciertas arquitecturas.
+    - Cohesión y Acoplamiento
+    - SoC (Separation of Concerns)
+    - SOLID (S = Single Responsibility Principle)
+
+    BACKEND                                                                                         FRONTAL
+    --------------------------------------------------------------------------------------          ------------------------------------------------
+    SQL                                                                                               
+     v
+    BBDD   <---   Repository                 <-- Service           <--- HttpRestController   <----    Servicio De Frontal  <--  Formulario Usuario
+     MySQL                                                                         
+     Garante       Lógica de persistencia         Lógica de negocio      Lógica de exposición          Lógica de comunicación    Lógica de captura
+     del dato      contra un motor concreto                              del Servicio por un           con el backend            de datos
+                                                                         protocolo
+
+                                                                   <--- SoapController
+
+                                                                   <--- WebSocketController 
+                                                
+                                                altaDeUsuario(datosDeUsuario)
+
+    ARQUITECTURA DE COMPONENTES DESACOPLADOS
+                                                                    
+
+    DNI
+    1-8 + LETRA
+    Y no cualquier letra.. una letra que encaje con el número.
+
+    Lógica asociada al TIPO DE DATO
+
+    FECHA DE NACIMIENTO dia mes año   federico
+
+    CREATE TABLE usuarios (
+        id INT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        apellido VARCHAR(50) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        fechaNacimiento DATE NOT NULL
+        edad INT NOT NULL,
+        dni DNI NOT NULL,
+    );    PLSQL
+                        ^^^^
+                        IF (lo que lo que viene nbo es un DATE) -> HOSTION!
+
+
+                        DESARROLLADOR JUNIOR ---> DESARROLLOR SENIOR ---> ARQUITECTO DE SOFTWARE
+                        --------------------------------------------
+                        

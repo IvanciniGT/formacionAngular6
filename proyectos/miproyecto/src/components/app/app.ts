@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UsuarioComponent } from '../usuario/usuario';
 import { Usuario } from '../../models/usuario.model';
+import { UsuariosService } from '../../services/usuarios/usuarios.service';
 
 // Quiero mi propia marca HTML
 // La marca se llama app-root
@@ -17,33 +18,18 @@ export class App {
   // Tiene código? NO.
   // Pues mi componente no tendrá ningún comportamiento.
 
-  readonly usuario1:Usuario = {
-      id: '1',
-      nombre: 'Juanito',
-      apellidos: 'Pérez',
-      foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt1ITs_hgsdCzhKoOZ6eIDl9x--VqbbSHqgwAyA8T2NA&s=10',
-      email: 'juanito@perez.com'
-  }
-  readonly usuario2:Usuario = {
-      id: '2',
-      nombre: 'Pepita',
-      apellidos: 'Pérez',
-      foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt1ITs_hgsdCzhKoOZ6eIDl9x--VqbbSHqgwAyA8T2NA&s=10',
-      email: 'juanito@perez.com'
-  }
-  readonly usuario3:Usuario = {
-      id: '3',
-      nombre: 'Menchu',
-      apellidos: 'Pérez',
-      foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt1ITs_hgsdCzhKoOZ6eIDl9x--VqbbSHqgwAyA8T2NA&s=10',
-      email: 'juanito@perez.com'
-  }
-  readonly usuario4:Usuario = {
-      id: '4',
-      nombre: 'Federico',
-      apellidos: 'Pérez',
-      foto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt1ITs_hgsdCzhKoOZ6eIDl9x--VqbbSHqgwAyA8T2NA&s=10',
-      email: 'juanito@perez.com'
+  private readonly usuariosService: UsuariosService;
+  readonly usuario1:Usuario;
+  readonly usuario2:Usuario;
+  readonly usuario3:Usuario;
+  readonly usuario4:Usuario;
+
+  constructor() {
+    this.usuariosService = new UsuariosService();
+    this.usuario1 = this.usuariosService.getDatosUsuario("1");
+    this.usuario2 = this.usuariosService.getDatosUsuario("2");
+    this.usuario3 = this.usuariosService.getDatosUsuario("3");
+    this.usuario4 = this.usuariosService.getDatosUsuario("4");
   }
 
 }
