@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UsuarioComponent } from '../usuario/usuario';
 import { Usuario } from '../../models/usuario.model';
 import { UsuariosService } from '../../services/usuarios/usuarios.service';
+import { Observable } from 'rxjs';
 
 // Quiero mi propia marca HTML
 // La marca se llama app-root
@@ -18,18 +19,31 @@ export class App {
   // Tiene código? NO.
   // Pues mi componente no tendrá ningún comportamiento.
 
-  private readonly usuariosService: UsuariosService;
-  readonly usuario1:Usuario;
-  readonly usuario2:Usuario;
-  readonly usuario3:Usuario;
-  readonly usuario4:Usuario;
+  usuario1?:Usuario;
+  usuario2?:Usuario;
+  usuario3?:Usuario;
+  usuario4:Usuario|undefined;
 
-  constructor() {
-    this.usuariosService = new UsuariosService();
-    this.usuario1 = this.usuariosService.getDatosUsuario("1");
-    this.usuario2 = this.usuariosService.getDatosUsuario("2");
-    this.usuario3 = this.usuariosService.getDatosUsuario("3");
-    this.usuario4 = this.usuariosService.getDatosUsuario("4");
+  constructor(private readonly usuariosService: UsuariosService) {
+     const ticket: Observable<Usuario> = this.usuariosService.getDatosUsuario("1");
+     ticket.subscribe({
+      next: (usuario: Usuario) => this.usuario1 = usuario,
+      error: (error: any) => console.error("Error al obtener los datos del usuario 1", error),
+    });
+
+    this.usuariosService.getDatosUsuario("2").subscribe({
+      next: (usuario: Usuario) => this.usuario2 = usuario,
+      error: (error: any) => console.error("Error al obtener los datos del usuario 2", error),
+    });
+    this.usuariosService.getDatosUsuario("3").subscribe({
+      next: (usuario: Usuario) => this.usuario3 = usuario,
+      error: (error: any) => console.error("Error al obtener los datos del usuario 3", error),
+    });
+    this.usuariosService.getDatosUsuario("4").subscribe({
+      next: (usuario: Usuario) => this.usuario4 = usuario,
+      error: (error: any) => console.error("Error al obtener los datos del usuario 4", error),
+    });
   }
 
 }
+

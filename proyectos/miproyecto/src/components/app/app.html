@@ -2,7 +2,30 @@
 <h1>Soy el super titulo de la aplicación</h1>
 <p>Esta aplicación hace cosas guays</p>
 
-<app-usuario [usuario]="this.usuario1" [extensible]="false"></app-usuario>
-<app-usuario [usuario]="this.usuario2" mode="compact" [extensible]="false"></app-usuario>
-<app-usuario [usuario]="this.usuario3" mode="extended"></app-usuario>
-<app-usuario [usuario]="this.usuario4" mode="compact"></app-usuario>
+<!-- Solo querré sacar los datos de los usuarios cuando estén disponibles -->
+<!-- Necesitamos un condicional -->
+<!-- Antiguamente en angular existía lo que se llamaba una directica: @ngIf que podíamos aplicar a los elementos:
+
+    <app-usuario *ngIf="this.usuario1!==undefined" [usuario]="this.usuario1" [extensible]="false"></app-usuario> 
+
+    Esto es de Angular Antiguo... ya no se hace así.
+
+    Hoy en día usamos condicionales directos en el HTML, con @if
+
+-->
+    @if(this.usuario1!==undefined){
+        <app-usuario [usuario]="this.usuario1" [extensible]="false"></app-usuario>
+    }
+    <!-- Truco de TS
+        if(this.usuario1!==undefined) le podemos escribir simplificado: if(this.usuario1) 
+        Es una sintaxis más corta
+    -->
+    @if(this.usuario2){
+        <app-usuario [usuario]="this.usuario2" mode="compact" [extensible]="false"></app-usuario>
+    }
+    @if(this.usuario3){
+        <app-usuario [usuario]="this.usuario3" mode="extended"></app-usuario>
+    }
+    @if(this.usuario4){
+        <app-usuario [usuario]="this.usuario4" mode="compact"></app-usuario>
+    }
