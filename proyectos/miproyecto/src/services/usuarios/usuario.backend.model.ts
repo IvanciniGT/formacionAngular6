@@ -1,9 +1,8 @@
-export class Usuario {
+export class UsuarioBackend {
     id?:            string;
     nombre?:        string;
     apellidos?:     string;
     foto?:          string;
     email:          string|undefined; // Es lo mismo que poner el ?
-    edad?:          number;
-
+    fachaNacimiento?: string;
 }

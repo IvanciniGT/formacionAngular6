@@ -165,3 +165,27 @@ Aplicación de solicitud de días libres de un empleado.
 |  Por aprobar   |    dinamicamente  |
 |  Configuración |                   |
 +------------------------------------+ 
+                                      -> FRONTAL2 (ios)
+    BACKEND -> JSON (FORMATO BACKEND) -> FRONTAL (Clase Usuario) <- Componente usuario / Componente ListadoUsuarios 
+                    ^                                ^
+                    +--------------------------------+
+
+usuario: {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "email": "pepito@pepe.com",
+    "urlFoto": "https://randomuser.me/api/por"
+}
+
+TODOS LOS COMPONENTES DEL FRONTAL ESTAN ACOPLADOS a la estructura de datos que devuelve el backend.
+Si hay un cambio en esa estructura de datos, todos los componentes del frontal se rompen y hay que reescribirlos.
+
+usuario: {
+    "id": 1,
+    "firstname": "Juan",
+    "lastname": "Pérez",
+    "email": "pepito@pepe.com",
+    "url": "https://randomuser.me/api/por"
+}
+
