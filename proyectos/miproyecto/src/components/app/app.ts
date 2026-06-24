@@ -27,7 +27,7 @@ export class App {
   constructor(private readonly usuariosService: UsuariosService) {
      const ticket: Observable<Usuario> = this.usuariosService.getDatosUsuario("1");
      ticket.subscribe({
-      next: (usuario: Usuario) => this.usuario1 = usuario,
+      next: (usuario: Usuario) => this.usuario1 = usuario ,
       error: (error: any) => console.error("Error al obtener los datos del usuario 1", error),
     });
 
