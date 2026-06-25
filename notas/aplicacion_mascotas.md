@@ -82,3 +82,5 @@ Habrá que configurar un fichero json para el json-server... y meter algunos dat
 
 Queremos una aplicación con un diseño moderno. En tonos azules y naranjas.
 Vamos a usar los componentes de Angular Material para los formularios, botones, inputs, etc.
+                                Bootstrap
+                                Primeface
