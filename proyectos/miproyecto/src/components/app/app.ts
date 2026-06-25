@@ -1,11 +1,9 @@
-import { Component, signal, WritableSignal } from '@angular/core';
-import { UsuarioComponent } from '../usuario/usuario';
-import { Usuario } from '../../models/usuario.model';
-import { UsuariosService } from '../../services/usuarios/usuarios.service';
-import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { ListadoUsuariosComponent } from '../listado-usuarios/listado-usuarios';
-import { FormularioNuevoUsuarioComponent } from '../formulario-usuario/formulario-usuario';
+import { Component, signal } from '@angular/core';
+//import { Usuario } from '../../models/usuario.model';
+//import { UsuariosService } from '../../services/usuarios/usuarios.service';
+//import { Observable } from 'rxjs';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { BotonCancelable } from '../boton-cancelable/boton-cancelable';
 
 // Quiero mi propia marca HTML
 // La marca se llama app-root
@@ -16,12 +14,12 @@ import { FormularioNuevoUsuarioComponent } from '../formulario-usuario/formulari
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [UsuarioComponent, AsyncPipe, ListadoUsuariosComponent, FormularioNuevoUsuarioComponent],
+  imports: [RouterOutlet, RouterLink, BotonCancelable],
 })
 export class App {
   // Tiene código? NO.
   // Pues mi componente no tendrá ningún comportamiento.
-
+/*
   usuario1?:Usuario;
   usuario2:Usuario|undefined;
   usuario3=signal<Usuario|undefined>(undefined);
@@ -76,6 +74,14 @@ export class App {
     // Por ejemplo, si lo que recibo no es un valor, sino un error.
 
   }
+*/
+
+  hanConfirmado(){
+    console.log("Han confirmado la acción");
+  }
+  hanCancelado(){
+    console.log("Han cancelado la acción");
+  } 
 
 }
 

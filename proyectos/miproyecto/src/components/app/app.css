@@ -1,4 +1,75 @@
+/* El host (app-root) ocupa toda la altura de la ventana y organiza
+   header / contenido / footer en una columna flexible */
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #1f2937;
+}
 
-h1 {
-    color: blue;
+/* ===== Cabecera ===== */
+header {
+    flex: 0 0 auto; /* altura fija, no se encoge */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #1f2937;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+header nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+header nav a {
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    color: #e5e7eb;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+header nav a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* Enlace de la ruta activa (Angular añade .active con routerLinkActive,
+   pero también resaltamos al pasar el ratón) */
+header nav a.active {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+/* ===== Contenido central con scroll independiente ===== */
+.contenido {
+    flex: 1 1 auto;   /* ocupa todo el espacio restante */
+    overflow-y: auto; /* scroll vertical propio, header y footer quedan fijos */
+    padding: 1.5rem;
+    background: #f3f4f6;
+}
+
+/* ===== Pie de página ===== */
+.footer {
+    flex: 0 0 auto; /* altura fija, no se encoge */
+    padding: 0.75rem 1.5rem;
+    background: #1f2937;
+    color: #cbd5e1;
+    text-align: center;
+    font-size: 0.85rem;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.15);
 }

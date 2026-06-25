@@ -1,42 +1,25 @@
+<header>
+    <h1>Super aplicación</h1>
 
-<h1>Soy el super titulo de la aplicación</h1>
-<p>Esta aplicación hace cosas guays</p>
+    <nav>
+        <a routerLink="/listado-usuarios">Listado de Usuarios</a>
+        <a routerLink="/nuevo-usuario">Nuevo usuario</a>
+    </nav>
+</header>
 
-<app-formulario-nuevo-usuario></app-formulario-nuevo-usuario>
-
-
-@if(this.errorAlCargarLosDatosDeLosUsuarios()){
-    <p>Ha habido un error al cargar los datos de los usuarios</p>
-}@else{
-<!-- Solo querré sacar los datos de los usuarios cuando estén disponibles -->
-<!-- Necesitamos un condicional -->
-<!-- Antiguamente en angular existía lo que se llamaba una directica: @ngIf que podíamos aplicar a los elementos:
-
-    <app-usuario *ngIf="this.usuario1!==undefined" [usuario]="this.usuario1" [extensible]="false"></app-usuario> 
-
-    Esto es de Angular Antiguo... ya no se hace así.
-
-    Hoy en día usamos condicionales directos en el HTML, con @if
-
+<app-boton-cancelable 
+        mensajeBoton="Botón cancelable" 
+        mensajeConfirmacion="Estoy seguro" 
+        mensajeCancelacion="Cancelar"
+        (confirmado)="hanConfirmado()"
+        (cancelado)="hanCancelado()"
+        >
+</app-boton-cancelable>
+<!-- voy a decirle a Angular que quiero ahora en mi componente app un hueco!
+Un hueco que iré rellenando con lo que sea... pero dinámicamente 
 -->
-    @if(this.usuario1!==undefined){
-        <app-usuario [usuario]="this.usuario1" [extensible]="false"></app-usuario>
-    }
-    <!-- Truco de TS
-        if(this.usuario1!==undefined) le podemos escribir simplificado: if(this.usuario1) 
-        Es una sintaxis más corta
-    -->
-    @if(this.usuario2){
-        <app-usuario [usuario]="this.usuario2" mode="compact" [extensible]="false"></app-usuario>
-    }
-    @if(this.usuario3(); as datosRecibidos){
-        <app-usuario [usuario]="datosRecibidos" mode="extended"></app-usuario>
-    }
-    @if(this.usuario4$ | async; as datosRecibidos){
-        <app-usuario [usuario]="datosRecibidos" mode="compact"></app-usuario>
-    }
+<main class="contenido">
+    <router-outlet/>
+</main>
 
-
-}
-
-<app-listado-usuarios></app-listado-usuarios>
+<div class="footer"> © Copyright 206 - Curso Angular</div>

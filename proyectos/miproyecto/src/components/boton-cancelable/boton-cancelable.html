@@ -1,0 +1,6 @@
+@if(!hanApretadoAlBotonPrincipal){
+    <button (click)="toogleHanApretadoAlBotonPrincipal()">{{ mensajeBoton }}</button>
+}@else{
+    <button (click)="apretaronEnConfirmar()">{{ mensajeConfirmacion }}</button>
+    <button (click)="apretaronEnCancelar()">{{ mensajeCancelacion }}</button>
+}

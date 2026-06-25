@@ -1,3 +1,4 @@
+/*
 form{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -21,4 +22,253 @@ form div label{
     color: #880000;
     display: inline-block;
     margin-left: 10px;
+}
+*/
+
+h2 {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+form div label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 12px;
+    font-weight: 600;
+    color: #374151;
+}
+
+form div input[type="text"],
+form div input[type="number"] {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form div input[type="text"]:focus,
+form div input[type="number"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+form div input[type="radio"] {
+    margin: 0 4px 0 12px;
+}
+
+form div input[type="radio"]:first-of-type {
+    margin-left: 0;
+}
+
+/* Estado de error: borde rojo en el input y label en rojo */
+.error label {
+    color: #dc2626;
+}
+
+.error input[type="text"],
+.error input[type="number"] {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+/* Estado válido: borde verde en el input y label en verde */
+.valido label {
+    color: #16a34a;
+}
+
+.valido input[type="text"],
+.valido input[type="number"] {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.error-info {
+    font-size: 12px;
+    color: #b91c1c;
+    display: block;
+    width: 100%;
+    margin: 4px 0 0 112px;
+}
+
+button[type="submit"] {
+    margin-top: 0.5rem;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.05s ease;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+button[type="submit"]:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+button[type="submit"]:disabled {
+    background: #cbd5e1;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+/* ===== Direcciones (tabla dinámica) ===== */
+h3 {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #1f2937;
+    margin: 0.5rem 0 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+/* El contenedor del FormArray no debe ser flex (lo es por la regla global
+   form div), o la cabecera y las filas tomarían anchos distintos */
+form [formArrayName] {
+    display: block;
+}
+
+/* Plantilla de columnas compartida por cabecera y filas
+   (la 5ª columna es fija = ancho del botón eliminar; así la cabecera reserva
+   ese mismo hueco aunque esté vacía y las columnas fr coinciden exactamente) */
+.cabecera-direcciones,
+.direccion {
+    display: grid;
+    grid-template-columns: 2fr 0.7fr 1.3fr 1fr 34px;
+    gap: 10px;
+    align-items: center;
+}
+
+.cabecera-direcciones {
+    margin-top: 0.5rem;
+    padding: 8px 10px;
+    background: #f3f4f6;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #e5e7eb;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #374151;
+}
+
+.cabecera-direcciones .numero {
+    text-align: right;
+}
+.cabecera-direcciones .codigo-postal {
+    text-align: center;
+}
+
+/* Las celdas de la cabecera también son grid items: que se comporten como bloque */
+.cabecera-direcciones > div {
+    display: block;
+    min-width: 0;
+}
+
+.direccion {
+    padding: 8px 10px;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    background: #ffffff;
+    transition: background 0.15s ease;
+}
+
+.direccion:nth-child(even) {
+    background: #fafafa;
+}
+
+.direccion:hover {
+    background: #eff6ff;
+}
+
+/* Cada celda de la fila contiene un input que ocupa todo el ancho */
+.direccion > div {
+    display: block;
+    min-width: 0; /* permite que el input se encoja y respete los fr de la rejilla */
+}
+
+.direccion input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botón de eliminar fila: icono compacto, en la misma fila */
+.eliminar-direccion {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fef2f2;
+    color: #dc2626;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.05s ease;
+}
+
+.eliminar-direccion:hover {
+    background: #fee2e2;
+    border-color: #f87171;
+}
+
+.eliminar-direccion:active {
+    transform: translateY(1px);
+}
+
+.agregar-direccion {
+    display: block;
+    margin-top: 0.75rem;
+}
+
+.agregar-direccion button {
+    padding: 8px 14px;
+    border: 1px dashed #3b82f6;
+    border-radius: 8px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.agregar-direccion button:hover {
+    background: #dbeafe;
+    border-color: #2563eb;
 }

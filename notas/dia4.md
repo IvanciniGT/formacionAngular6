@@ -99,3 +99,81 @@ SUBPATRON: Secuencia de caracteres + modificador de cantidad
     ^((([0-9]{1,2}[.][0-9]{3}[.][0-9]{3})|([0-9]{1,3}[.][0-9]{3})|([0-9]{1,8}))[ -]?[a-zA-Z])$
     regex101
 
+---
+
+# Angular Outputs
+
+Cuando creamos un componente, hemos visto que al final, lo que estamos definiendo es nuestra propia marca HTML.
+Hemos visto que podemos pasarle datos a esa marcaHTML (componente) mediante atributos HTML. Y hemos visto que esos atributos HTML se llaman Inputs.
+
+Pero, en angular y en HTML... los componentes pueden lanzar eventos. Y esos eventos pueden ser escuchados por el padre del componente.
+
+En HTML estandar:
+  <div class="valor-css" onclick="alert('Hola')">Hola</div>
+
+En angular:
+  <app-mi-componente [attrb]="valor" (miEvento)="alert('Hola')"></app-mi-componente>
+
+Hemos visto como definir Inputs en un componente, pero no hemos visto como definir Outputs.
+
+Al final, una app basada en componentes Web (como lñas que creamos con Angular) se basan en comunicaciones entre componentes.
+
+  PADRE -> HIJO (atributoHTML / Input)
+  HIJO -> PADRE (evento / Output)
+
+---
+
+# Montar una app completa con Angular que gestione BBDD de mascotas
+
+^^^ Lo encargamos a un agente de ia
+
+- Copilot
+- Claude
+
+
+---
+
+Vamos a montar un BotonCancelable... Es un nuevo componente:
+
+  <app-boton-cancelable>
+    GUARDAR
+  </app-boton-cancelable>
+
+  <app-boton-cancelable>
+    RESETEAR FORMULARIO
+  </app-boton-cancelable>  
+  
+  <app-boton-cancelable>
+    SALIR DEL FORMULARIO
+  </app-boton-cancelable>  
+
+  Estaba en un listado de Mascotas.
+  Pulso sobre el botón de nueva mascota.
+  Se abre un formulario de nueva mascota.
+  Relleno algunos datos.
+  Y pulso sobre el botón de SALIR DEL FORMULARIO.  (Si el formulario esta DIRTY, me debería que confirme la accion)
+  El formulario se cierra, y vuelvo al listado de mascotas.
+  Me debería sacar del formulario de vuelta al listado de mascotas.
+
+    BOTON:  
+      Volver al listado de mascotas
+      Si el formulario está sucio:
+        Al pulsar el botón:
+          - Está seguro?
+            - Si, quiero salir del formulario ---> Voy al listado
+            - No, dejarme en el formulario    ---> Cancela
+
+
+Podría aplciar igual a: Eliminar..
+
+<button (click)="confirmarEliminar()">Eliminar</button>
+
+En nuestro botón cancelable podríamos tener algo asi:
+
+<app-boton-cancelable 
+  (confirmado)="confirmarEliminar()" 
+  (cancelado)="cancelarEliminar()"
+  mensajeBoton="Eliminar"
+  mensajeConfirmacion="Si, quiero eliminar este registro"
+  mensajeCancelacion="No, dejarme en el formulario"
+></app-boton-cancelable>

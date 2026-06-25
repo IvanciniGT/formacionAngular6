@@ -111,6 +111,44 @@
         }
 
     </div>
+
+    <h3>Direcciones</h3>
+    <div formArrayName="direcciones"> <!-- Agrupa todas las direcciones-->
+        <div class="cabecera-direcciones">   <!-- Para la cabecera de la tabla       -->
+            <div class="calle"> Calle </div>
+            <div class="numero"> Número </div>
+            <div class="ciudad"> Ciudad </div>
+            <div class="codigo-postal"> Código Postal </div>
+        </div>
+        @for(direccion of this.direcciones.controls; track direccion; let indice = $index){
+        <div class="direccion"  [formGroupName]="indice" >   <!-- Para cada direccion... que lo mostraré como una fila de una tabla-->
+            <div class="calle"
+                [class.error]="direccion.get('calle')?.dirty && direccion.get('calle')?.invalid"
+                [class.valido]="direccion.get('calle')?.dirty && direccion.get('calle')?.valid" 
+            > <input type="text" formControlName="calle"> </div>
+            <div class="numero"
+                [class.error]="direccion.get('numero')?.dirty && direccion.get('numero')?.invalid"
+                [class.valido]="direccion.get('numero')?.dirty && direccion.get('numero')?.valid"
+            > <input type="text" formControlName="numero"> </div>
+            <div class="ciudad"
+                [class.error]="direccion.get('ciudad')?.dirty && direccion.get('ciudad')?.invalid"
+                [class.valido]="direccion.get('ciudad')?.dirty && direccion.get('ciudad')?.valid"
+            > <input type="text" formControlName="ciudad"> </div>
+            <div class="codigo-postal"
+                [class.error]="direccion.get('codigoPostal')?.dirty && direccion.get('codigoPostal')?.invalid"
+                [class.valido]="direccion.get('codigoPostal')?.dirty && direccion.get('codigoPostal')?.valid"
+            > <input type="text" formControlName="codigoPostal"> </div>
+            <button type="button" class="eliminar-direccion" title="Eliminar dirección" (click)="this.eliminarDireccion(indice)">🗑</button>
+        </div>
+        }
+        <div class="agregar-direccion">
+            <button type="button" (click)="this.agregarDireccion()">Agregar dirección</button>
+        </div>
+    </div>
+
+
+
+
     <button type="submit" [disabled]="!this.formulario.valid">Guardar usuario</button>
     <!-- A un formGroup de Angular le puedo preguntar si está VALIDO -->
 </form>

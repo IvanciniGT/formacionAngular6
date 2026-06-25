@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 const PATRON_DNI = "^((([0-9]{1,2}[.][0-9]{3}[.][0-9]{3})|([0-9]{1,3}[.][0-9]{3})|([0-9]{1,8}))[ -]?[a-zA-Z])$";
@@ -14,11 +14,13 @@ const LETRAS_DNI = "TRWAGMYFPDXBNJZSQVHLCKE";
 export class FormularioNuevoUsuarioComponent {
 
   formulario: FormGroup;
+  direcciones: FormArray;
 
   constructor( private readonly constructorDeFormularios: FormBuilder ) {
+    this.direcciones = this.constructorDeFormularios.array([]); // ARRAY es una lista de formularios
     // Con el constructor de formulario creamos/definimos un formulario (conceptual,estructura, lógico, no visual)
     // El constructor me devuelve un objeto de tipo FormGroup, que es la representación lógica de un formulario.
-    this.formulario = this.constructorDeFormularios.group({
+    this.formulario = this.constructorDeFormularios.group({ // Group es un FORMULARIO
       // campo: ['VALOR POR DEFECTO', [Validaciones]]
       // Angular nos ofrece en su módulo de formularios muchas validaciones predefinidas
       // Y luego yo puedo crearme mis propias funciones de validación específicas
@@ -30,7 +32,23 @@ export class FormularioNuevoUsuarioComponent {
       conduce:    [null, [ Validators.required ]],
       vehiculo:   [null ],
       dni:        [null, [ Validators.required, Validators.pattern(PATRON_DNI) ] , FormularioNuevoUsuarioComponent.dniValido ],
+      direcciones: this.direcciones
     });
+  }
+
+  agregarDireccion() {
+    const nuevoFormularioDeDireccion = this.constructorDeFormularios.group({
+      // Detallo los campos de ese subformulario de dirección
+      calle:      [null, [ Validators.required, Validators.minLength(3), Validators.maxLength(50) ]],
+      numero:     [null, [ Validators.required, Validators.min(1), Validators.max(10000) ]],
+      ciudad:     [null, [ Validators.required, Validators.minLength(3), Validators.maxLength(50) ]],
+      codigoPostal: [null, [ Validators.required, Validators.minLength(5), Validators.maxLength(5) ]],
+    });
+    this.direcciones.push(nuevoFormularioDeDireccion);
+  }
+
+  eliminarDireccion(indice: number) {
+    this.direcciones.removeAt(indice);
   }
 
   guardarFormulario() {
