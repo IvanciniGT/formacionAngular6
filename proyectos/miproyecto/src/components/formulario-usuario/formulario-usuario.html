@@ -1,0 +1,36 @@
+
+<h2> Formulario de nuevo usuario</h2>
+
+<form [formGroup]="this.formulario">
+    <div class="nombre">
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre"></input>
+    </div>
+    <div class="apellidos">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" formControlName="apellidos"></input>
+    </div>
+    <div class="edad">
+        <label for="edad">Edad</label>
+        <input type="number" formControlName="edad"></input>
+    </div>
+    <div class="email">
+        <label for="email">Email</label>
+        <input type="text" formControlName="email"></input>
+    </div>
+    <div class="conduce">
+        <label for="conduce">Conduce</label>
+        <input type="radio" formControlName="conduce" value="no"></input>No
+        <input type="radio" formControlName="conduce" value="coche"></input>Coche
+        <input type="radio" formControlName="conduce" value="moto"></input>Moto
+    </div>
+    <div class="vehiculo">
+        <label for="vehiculo">Vehículo</label>
+        <input type="text" formControlName="vehiculo"></input>
+    </div>
+    <div class="dni">
+        <label for="dni">DNI</label>
+        <input type="text" formControlName="dni"></input>
+    </div>
+    <button type="submit">Guardar usuario</button>
+</form>

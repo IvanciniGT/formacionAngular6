@@ -5,6 +5,7 @@ import { UsuariosService } from '../../services/usuarios/usuarios.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ListadoUsuariosComponent } from '../listado-usuarios/listado-usuarios';
+import { FormularioNuevoUsuarioComponent } from '../formulario-usuario/formulario-usuario';
 
 // Quiero mi propia marca HTML
 // La marca se llama app-root
@@ -15,7 +16,7 @@ import { ListadoUsuariosComponent } from '../listado-usuarios/listado-usuarios';
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [UsuarioComponent, AsyncPipe, ListadoUsuariosComponent],
+  imports: [UsuarioComponent, AsyncPipe, ListadoUsuariosComponent, FormularioNuevoUsuarioComponent],
 })
 export class App {
   // Tiene código? NO.

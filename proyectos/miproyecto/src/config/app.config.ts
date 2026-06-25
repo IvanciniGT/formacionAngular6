@@ -14,6 +14,9 @@ export const appConfig: ApplicationConfig = {
       provide: UsuariosService,
       useClass: UsuariosServiceImpl
     },
-    provideHttpClient()
+    provideHttpClient(),
+    // Solicitamos tener disponible el constructor de formularios reactivos de Angular
+    // provideReactiveForms()
+    // Se mete en cada componente que lo necesita
   ]
 };

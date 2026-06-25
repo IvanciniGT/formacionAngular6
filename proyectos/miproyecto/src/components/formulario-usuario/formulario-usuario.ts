@@ -1,0 +1,60 @@
+import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+
+const PATRON_DNI = "^((([0-9]{1,2}[.][0-9]{3}[.][0-9]{3})|([0-9]{1,3}[.][0-9]{3})|([0-9]{1,8}))[ -]?[a-zA-Z])$";
+const LETRAS_DNI = "TRWAGMYFPDXBNJZSQVHLCKE";
+@Component({
+  selector: 'app-formulario-nuevo-usuario',
+  templateUrl: './formulario-usuario.html',
+  styleUrls: ['./formulario-usuario.css'],
+  imports: [ReactiveFormsModule],
+})
+export class FormularioNuevoUsuarioComponent {
+
+  formulario: FormGroup;
+
+  constructor( private readonly constructorDeFormularios: FormBuilder ) {
+    // Con el constructor de formulario creamos/definimos un formulario (conceptual,estructura, lógico, no visual)
+    // El constructor me devuelve un objeto de tipo FormGroup, que es la representación lógica de un formulario.
+    this.formulario = this.constructorDeFormularios.group({
+      // campo: ['VALOR POR DEFECTO', [Validaciones]]
+      // Angular nos ofrece en su módulo de formularios muchas validaciones predefinidas
+      // Y luego yo puedo crearme mis propias funciones de validación específicas
+      // Las validaciones se definen/usan mediante una clase que ofrece angular, llamada Validators
+      nombre:     [null, [ Validators.required, Validators.minLength(3), Validators.maxLength(50) ]], 
+      apellidos:  [null, [ Validators.required, Validators.minLength(3), Validators.maxLength(50) ]],
+      edad:       [null, [ Validators.required, Validators.min(0), Validators.max(150) ]],
+      email:      [null, [ Validators.required, Validators.email ]],
+      conduce:    [null, [ Validators.required ]],
+      vehiculo:   [null ],
+      dni:        [null, [ Validators.required, Validators.pattern(PATRON_DNI) ] , FormularioNuevoUsuarioComponent.dniValido ],
+    });
+  }
+
+  // En la función no usamos por ningñun lado ningún atributo de la clase (si no tengo this.)
+  // Este tipo de funciones de validación tienen siempre esta pinta. Lo impone Angular.
+  static dniValido(campoDelFormularioConElDNI: AbstractControl) : Observable<ValidationErrors|null> {
+    // Obtener el valor actual del campo del formulario
+    const valorActual = campoDelFormularioConElDNI.value;
+    const esValido = FormularioNuevoUsuarioComponent.validarDNI(valorActual);
+    if(esValido){
+      return of(null); // Nada. Promesa(Observable) null
+    } else{
+      return of({ dniInvalido: true }); // Promesa(Observable) con un objeto que describe el error
+    }
+  }
+
+  static validarDNI(dni:string): boolean {
+    dni = dni.toUpperCase();
+    // Quitarle puntos, espacios y guiones. Si aparecen, ya sé que están en buen sitio (PATRON)
+    dni = dni.trim().replaceAll(".","").replaceAll("-", "").replaceAll(" ", "");
+    const numero = dni.substring(0, dni.length - 1);
+    const letra = dni.charAt(dni.length - 1);
+    const restoDeLaDivisionEntrera = parseInt(numero) % 23;
+    const letraQueCorrespondeAlNumero = LETRAS_DNI.charAt(restoDeLaDivisionEntrera);
+    return letra === letraQueCorrespondeAlNumero;
+  }
+
+}
+
