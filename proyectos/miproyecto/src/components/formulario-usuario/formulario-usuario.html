@@ -1,36 +1,116 @@
 
 <h2> Formulario de nuevo usuario</h2>
 
-<form [formGroup]="this.formulario">
-    <div class="nombre">
+<form [formGroup]="this.formulario" (ngSubmit)="this.guardarFormulario()">
+    <div 
+        class="nombre"
+        [class.error]="this.formulario.get('nombre')?.dirty && this.formulario.get('nombre')?.invalid"
+        [class.valido]="this.formulario.get('nombre')?.dirty && this.formulario.get('nombre')?.valid"
+    >
         <label for="nombre">Nombre</label>
-        <input type="text" formControlName="nombre"></input>
+        <input type="text" formControlName="nombre">
+        @if(this.formulario.get('nombre')?.dirty && this.formulario.get('nombre')?.errors?.['required']){
+            <div class="error-info">El campo es obligatorio</div>
+        }
+        @if(this.formulario.get('nombre')?.dirty && this.formulario.get('nombre')?.errors?.['minlength']){
+            <div class="error-info">El campo debe tener al menos 3 caracteres</div>
+        }
+        @if(this.formulario.get('nombre')?.dirty && this.formulario.get('nombre')?.errors?.['maxlength']){
+            <div class="error-info">El campo no debe tener más de 50 caracteres</div>
+        }
     </div>
-    <div class="apellidos">
+    <div 
+        class="apellidos"
+        [class.error]="this.formulario.get('apellidos')?.dirty && this.formulario.get('apellidos')?.invalid"
+        [class.valido]="this.formulario.get('apellidos')?.dirty && this.formulario.get('apellidos')?.valid"
+    >
         <label for="apellidos">Apellidos</label>
-        <input type="text" formControlName="apellidos"></input>
+        <input type="text" formControlName="apellidos">
+
+        @if(this.formulario.get('apellidos')?.dirty && this.formulario.get('apellidos')?.errors?.['required']){
+            <div class="error-info">El campo es obligatorio</div>
+        }
+        @if(this.formulario.get('apellidos')?.dirty && this.formulario.get('apellidos')?.errors?.['minlength']){
+            <div class="error-info">El campo debe tener al menos 3 caracteres</div>
+        }
+        @if(this.formulario.get('apellidos')?.dirty && this.formulario.get('apellidos')?.errors?.['maxlength']){
+            <div class="error-info">El campo no debe tener más de 50 caracteres</div>
+        }        
     </div>
-    <div class="edad">
+    <div 
+        class="edad"
+        [class.error]="this.formulario.get('edad')?.dirty && this.formulario.get('edad')?.invalid"
+        [class.valido]="this.formulario.get('edad')?.dirty && this.formulario.get('edad')?.valid"
+    >
         <label for="edad">Edad</label>
-        <input type="number" formControlName="edad"></input>
+        <input type="number" formControlName="edad">
+
+          @if(this.formulario.get('edad')?.dirty && this.formulario.get('edad')?.errors?.['required']){
+            <div class="error-info">El campo es obligatorio</div>
+        }
+        @if(this.formulario.get('edad')?.dirty && this.formulario.get('edad')?.errors?.['min']){
+            <div class="error-info">El campo debe tener al menos 0</div>
+        }
+        @if(this.formulario.get('edad')?.dirty && this.formulario.get('edad')?.errors?.['max']){
+            <div class="error-info">El campo no debe tener más de 150</div>
+        }
     </div>
-    <div class="email">
+    <div 
+        class="email"
+        [class.error]="this.formulario.get('email')?.dirty && this.formulario.get('email')?.invalid"
+        [class.valido]="this.formulario.get('email')?.dirty && this.formulario.get('email')?.valid"
+    >
         <label for="email">Email</label>
-        <input type="text" formControlName="email"></input>
+        <input type="text" formControlName="email">
+
+        @if(this.formulario.get('email')?.dirty && this.formulario.get('email')?.errors?.['required']){
+            <div class="error-info">El campo es obligatorio</div>
+        }
+        @if(this.formulario.get('email')?.dirty && this.formulario.get('email')?.errors?.['email']){
+            <div class="error-info">El campo debe tener un formato de email válido</div>
+        }
     </div>
-    <div class="conduce">
+    <div 
+        class="conduce"
+        [class.error]="this.formulario.get('conduce')?.dirty && this.formulario.get('conduce')?.invalid"
+        [class.valido]="this.formulario.get('conduce')?.dirty && this.formulario.get('conduce')?.valid"
+    >
         <label for="conduce">Conduce</label>
-        <input type="radio" formControlName="conduce" value="no"></input>No
-        <input type="radio" formControlName="conduce" value="coche"></input>Coche
-        <input type="radio" formControlName="conduce" value="moto"></input>Moto
+        <input type="radio" formControlName="conduce" value="no">No
+        <input type="radio" formControlName="conduce" value="coche">Coche
+        <input type="radio" formControlName="conduce" value="moto">Moto
+
+        @if(this.formulario.get('conduce')?.dirty && this.formulario.get('conduce')?.errors?.['required']){
+            <div class="error-info">El campo es obligatorio</div>
+        }
     </div>
-    <div class="vehiculo">
+    <div 
+        class="vehiculo"
+        [class.error]="this.formulario.get('vehiculo')?.dirty && this.formulario.get('vehiculo')?.invalid"
+        [class.valido]="this.formulario.get('vehiculo')?.dirty && this.formulario.get('vehiculo')?.valid"
+    >
         <label for="vehiculo">Vehículo</label>
-        <input type="text" formControlName="vehiculo"></input>
+        <input type="text" formControlName="vehiculo">
     </div>
-    <div class="dni">
+    <div class="dni"
+        [class.error]="this.formulario.get('dni')?.dirty && this.formulario.get('dni')?.invalid"
+        [class.valido]="this.formulario.get('dni')?.dirty && this.formulario.get('dni')?.valid"
+    >
+
         <label for="dni">DNI</label>
-        <input type="text" formControlName="dni"></input>
+        <input type="text" formControlName="dni">
+
+        @if(this.formulario.get('dni')?.dirty && this.formulario.get('dni')?.errors?.['required']){
+            <div class="error-info">El campo es obligatorio</div>
+        }
+        @if(this.formulario.get('dni')?.dirty && this.formulario.get('dni')?.errors?.['pattern']){
+            <div class="error-info">El campo debe tener un formato de DNI válido</div>
+        }
+        @if(this.formulario.get('dni')?.dirty && this.formulario.get('dni')?.errors?.['dniInvalido']){
+            <div class="error-info">La letra del DNI no es válida</div>
+        }
+
     </div>
-    <button type="submit">Guardar usuario</button>
+    <button type="submit" [disabled]="!this.formulario.valid">Guardar usuario</button>
+    <!-- A un formGroup de Angular le puedo preguntar si está VALIDO -->
 </form>

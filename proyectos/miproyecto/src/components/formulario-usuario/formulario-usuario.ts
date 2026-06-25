@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
@@ -8,7 +9,7 @@ const LETRAS_DNI = "TRWAGMYFPDXBNJZSQVHLCKE";
   selector: 'app-formulario-nuevo-usuario',
   templateUrl: './formulario-usuario.html',
   styleUrls: ['./formulario-usuario.css'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule], // Dentro tiene en ngSubmit
 })
 export class FormularioNuevoUsuarioComponent {
 
@@ -32,6 +33,20 @@ export class FormularioNuevoUsuarioComponent {
     });
   }
 
+  guardarFormulario() {
+    // Cojo los datos del formulario:
+    const datosDelFormulario = this.formulario.value;
+    console.log("Datos del formulario:", datosDelFormulario);
+    const dniEscrito = datosDelFormulario.dni;
+    let dniNormalizado = FormularioNuevoUsuarioComponent.normalizarDNI(dniEscrito);
+    // Completo con 0s a la izquierda hasta que tenga 8 dígitos
+    dniNormalizado = ("0000000"+dniNormalizado);
+    dniNormalizado = dniNormalizado.substring(dniNormalizado.length-9);
+    datosDelFormulario.dni = dniNormalizado;
+    console.log("Datos del formulario con DNI normalizado:", datosDelFormulario);
+    // Este dato, lo pasaría a un servicio (como el que hicimos de usuarios... para que se guarde en un backend, en una base de datos, etc)
+  }
+
   // En la función no usamos por ningñun lado ningún atributo de la clase (si no tengo this.)
   // Este tipo de funciones de validación tienen siempre esta pinta. Lo impone Angular.
   static dniValido(campoDelFormularioConElDNI: AbstractControl) : Observable<ValidationErrors|null> {
@@ -46,14 +61,18 @@ export class FormularioNuevoUsuarioComponent {
   }
 
   static validarDNI(dni:string): boolean {
-    dni = dni.toUpperCase();
-    // Quitarle puntos, espacios y guiones. Si aparecen, ya sé que están en buen sitio (PATRON)
-    dni = dni.trim().replaceAll(".","").replaceAll("-", "").replaceAll(" ", "");
+    dni = FormularioNuevoUsuarioComponent.normalizarDNI(dni);
     const numero = dni.substring(0, dni.length - 1);
     const letra = dni.charAt(dni.length - 1);
     const restoDeLaDivisionEntrera = parseInt(numero) % 23;
     const letraQueCorrespondeAlNumero = LETRAS_DNI.charAt(restoDeLaDivisionEntrera);
     return letra === letraQueCorrespondeAlNumero;
+  }
+  static normalizarDNI(dni:string): string {
+    dni = dni.toUpperCase();
+    // Quitarle puntos, espacios y guiones. Si aparecen, ya sé que están en buen sitio (PATRON)
+    dni = dni.trim().replaceAll(".","").replaceAll("-", "").replaceAll(" ", "");
+    return dni;
   }
 
 }
