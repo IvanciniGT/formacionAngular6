@@ -1,0 +1,37 @@
+<mat-card class="item" appearance="outlined">
+  <div class="info">
+    <a class="nombre" [routerLink]="['/detalle-mascota', mascota.id]">
+      {{ mascota.nombre }}
+    </a>
+    <div class="detalles">
+      <span class="etiqueta tipo">{{ mascota.tipo }}</span>
+      <span class="raza">{{ mascota.raza }}</span>
+    </div>
+  </div>
+
+  <div class="acciones">
+    <a
+      mat-icon-button
+      color="primary"
+      matTooltip="Ver detalle"
+      [routerLink]="['/detalle-mascota', mascota.id]"
+    >
+      <mat-icon>visibility</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      color="accent"
+      matTooltip="Editar"
+      [routerLink]="['/editar-mascota', mascota.id]"
+    >
+      <mat-icon>edit</mat-icon>
+    </a>
+    <app-boton-cancelable
+      modo="icono"
+      mensajeBoton="Eliminar"
+      [mensajeConfirmacion]="'Confirmar eliminación'"
+      mensajeCancelacion="Cancelar"
+      (confirmado)="solicitarEliminar()"
+    ></app-boton-cancelable>
+  </div>
+</mat-card>

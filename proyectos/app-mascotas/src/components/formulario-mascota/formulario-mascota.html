@@ -1,0 +1,88 @@
+<h2>{{ esEdicion ? 'Editar mascota' : 'Nueva mascota' }}</h2>
+
+@if (estado() === 'loading' && esEdicion && formulario.pristine) {
+  <div class="estado-cargando">
+    <mat-spinner diameter="48"></mat-spinner>
+    <p>Cargando datos...</p>
+  </div>
+}
+
+<form class="formulario" [formGroup]="formulario" (ngSubmit)="guardar()">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput type="text" formControlName="nombre" />
+    @if (mostrarError('nombre', 'required')) {
+      <mat-error>El nombre es obligatorio</mat-error>
+    }
+    @if (mostrarError('nombre', 'minlength') || mostrarError('nombre', 'maxlength')) {
+      <mat-error>El nombre debe tener entre 2 y 50 caracteres</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo</mat-label>
+    <mat-select formControlName="tipo">
+      @for (tipo of tipos; track tipo) {
+        <mat-option [value]="tipo">{{ tipo }}</mat-option>
+      }
+    </mat-select>
+    @if (mostrarError('tipo', 'required')) {
+      <mat-error>El tipo es obligatorio</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Raza</mat-label>
+    <input matInput type="text" formControlName="raza" />
+    @if (mostrarError('raza', 'required')) {
+      <mat-error>La raza es obligatoria</mat-error>
+    }
+    @if (mostrarError('raza', 'minlength') || mostrarError('raza', 'maxlength')) {
+      <mat-error>La raza debe tener entre 2 y 50 caracteres</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Edad (años)</mat-label>
+    <input matInput type="number" formControlName="edad" min="0" max="30" />
+    @if (mostrarError('edad', 'required')) {
+      <mat-error>La edad es obligatoria</mat-error>
+    }
+    @if (mostrarError('edad', 'min') || mostrarError('edad', 'max')) {
+      <mat-error>La edad debe estar entre 0 y 30 años</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="campo-ancho">
+    <mat-label>Foto (URL)</mat-label>
+    <input matInput type="url" formControlName="foto" placeholder="https://..." />
+    @if (mostrarError('foto', 'required')) {
+      <mat-error>La foto es obligatoria</mat-error>
+    }
+    @if (mostrarError('foto', 'pattern')) {
+      <mat-error>Introduce una URL válida (http:// o https://)</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="acciones">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="estado() === 'loading'"
+    >
+      <mat-icon>save</mat-icon>
+      {{ esEdicion ? 'Guardar cambios' : 'Crear mascota' }}
+    </button>
+
+    <app-boton-cancelable
+      modo="texto"
+      mensajeBoton="Cancelar"
+      mensajeConfirmacion="Sí, salir sin guardar"
+      mensajeCancelacion="No, seguir editando"
+      icono="close"
+      color="accent"
+      (confirmado)="cancelar()"
+    ></app-boton-cancelable>
+  </div>
+</form>

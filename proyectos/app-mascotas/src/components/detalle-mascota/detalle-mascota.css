@@ -1,0 +1,68 @@
+.ficha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  border-top: 5px solid var(--color-naranja);
+}
+
+.foto {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--mat-sys-surface-container-high);
+  flex: 0 0 auto;
+}
+
+.datos {
+  flex: 1 1 260px;
+}
+
+.datos h2 {
+  margin-top: 0;
+  color: var(--color-azul-oscuro);
+}
+
+.campo {
+  font-weight: 500;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.valor.tipo {
+  background-color: var(--mat-sys-tertiary);
+  color: var(--mat-sys-on-tertiary);
+  border-radius: 999px;
+  padding: 0.1rem 0.7rem;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.estado-cargando,
+.estado-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.estado-error {
+  color: var(--mat-sys-error);
+}
+
+.estado-error mat-icon {
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+}

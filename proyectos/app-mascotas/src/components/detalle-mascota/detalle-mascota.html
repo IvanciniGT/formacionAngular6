@@ -1,0 +1,46 @@
+@switch (estado()) {
+  @case ('loading') {
+    <div class="estado-cargando">
+      <mat-spinner diameter="48"></mat-spinner>
+      <p>Cargando datos de la mascota...</p>
+    </div>
+  }
+  @case ('error') {
+    <div class="estado-error">
+      <mat-icon>error_outline</mat-icon>
+      <p>No se ha podido cargar la mascota.</p>
+      <a mat-stroked-button color="primary" routerLink="/listado-mascotas">Volver al listado</a>
+    </div>
+  }
+  @case ('success') {
+    @if (mascota(); as m) {
+      <mat-card class="ficha" appearance="outlined">
+        <img class="foto" [src]="m.foto" [alt]="'Foto de ' + m.nombre" />
+        <div class="datos">
+          <h2>{{ m.nombre }}</h2>
+          <p><span class="campo">Tipo:</span> <span class="valor tipo">{{ m.tipo }}</span></p>
+          <p><span class="campo">Raza:</span> {{ m.raza }}</p>
+          <p><span class="campo">Edad:</span> {{ m.edad }} año(s)</p>
+
+          <div class="acciones">
+            <a mat-raised-button color="accent" [routerLink]="['/editar-mascota', m.id]">
+              <mat-icon>edit</mat-icon>
+              Modificar
+            </a>
+            <app-boton-cancelable
+              modo="texto"
+              mensajeBoton="Eliminar"
+              mensajeConfirmacion="Sí, eliminar esta mascota"
+              mensajeCancelacion="No, conservarla"
+              (confirmado)="eliminar()"
+            ></app-boton-cancelable>
+            <a mat-button routerLink="/listado-mascotas">
+              <mat-icon>arrow_back</mat-icon>
+              Volver
+            </a>
+          </div>
+        </div>
+      </mat-card>
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.buscador {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  background: var(--mat-sys-surface-container);
+  padding: 1rem 1.2rem 0.2rem;
+  border-radius: 12px;
+  box-shadow: var(--mat-sys-level1);
+  margin-bottom: 1.5rem;
+}
+
+.campo-nombre {
+  flex: 1 1 220px;
+}
+
+.campo-tipo {
+  flex: 0 1 160px;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}

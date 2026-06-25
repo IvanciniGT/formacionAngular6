@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="cabecera">
+  <span class="logo">
+    <mat-icon>pets</mat-icon>
+    <span class="titulo">App Mascotas</span>
+  </span>
+
+  <nav class="navegacion">
+    <a mat-button routerLink="/listado-mascotas" routerLinkActive="enlace-activo">
+      <mat-icon>list</mat-icon>
+      Listado
+    </a>
+    <a mat-button routerLink="/nueva-mascota" routerLinkActive="enlace-activo">
+      <mat-icon>add</mat-icon>
+      Nueva mascota
+    </a>
+  </nav>
+</mat-toolbar>
+
+<!-- Hueco que se rellena dinámicamente con el componente de cada ruta. -->
+<main class="contenido">
+  <router-outlet />
+</main>
+
+<footer class="pie">
+  © {{ anyo }} - Curso Angular · App Mascotas
+</footer>

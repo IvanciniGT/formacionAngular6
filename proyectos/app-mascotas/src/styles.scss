@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+/* Tema personalizado de Angular Material (M3): azul (primary) + naranja (tertiary).
+   Se adapta automáticamente a claro/oscuro según el sistema gracias a light-dark(). */
+html {
+  color-scheme: light dark;
+
+  @include mat.theme((
+    color: (
+      primary: mat.$blue-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+/* Puentes a las variables del sistema de Material para reutilizarlas en los
+   estilos propios de los componentes y garantizar coherencia y contraste
+   tanto en modo claro como oscuro. */
+:root {
+  --color-azul: var(--mat-sys-primary);
+  --color-azul-oscuro: var(--mat-sys-primary);
+  --color-naranja: var(--mat-sys-tertiary);
+  --color-naranja-oscuro: var(--mat-sys-tertiary);
+  --color-fondo: var(--mat-sys-surface);
+  --color-texto: var(--mat-sys-on-surface);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--mat-sys-primary);
+}

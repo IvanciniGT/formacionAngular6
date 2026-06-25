@@ -1,0 +1,40 @@
+<div class="cabecera-listado">
+  <h2>Listado de mascotas</h2>
+  <a mat-raised-button color="accent" routerLink="/nueva-mascota">
+    <mat-icon>add</mat-icon>
+    Nueva mascota
+  </a>
+</div>
+
+<app-mascotas-buscador (buscar)="onBuscar($event)"></app-mascotas-buscador>
+
+@switch (estado()) {
+  @case ('loading') {
+    <div class="estado-cargando">
+      <mat-spinner diameter="48"></mat-spinner>
+      <p>Cargando mascotas...</p>
+    </div>
+  }
+  @case ('error') {
+    <div class="estado-error">
+      <mat-icon>error_outline</mat-icon>
+      <p>Ha habido un error al cargar las mascotas.</p>
+      <button mat-stroked-button color="primary" (click)="cargar()">Reintentar</button>
+    </div>
+  }
+  @case ('success') {
+    @if (mascotas().length > 0) {
+      @for (mascota of mascotas(); track mascota.id) {
+        <app-listado-mascotas-item
+          [mascota]="mascota"
+          (eliminar)="onEliminar($event)"
+        ></app-listado-mascotas-item>
+      }
+    } @else {
+      <div class="estado-vacio">
+        <mat-icon>pets</mat-icon>
+        <p>No hay mascotas que coincidan con la búsqueda.</p>
+      </div>
+    }
+  }
+}

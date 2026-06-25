@@ -1,0 +1,53 @@
+{
+  "mascotas": [
+    {
+      "nombre": "Toby",
+      "tipo": "perro",
+      "raza": "Labrador",
+      "edad": 4,
+      "foto": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&q=80",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "nombre": "Mishi",
+      "tipo": "gato",
+      "raza": "Siamés",
+      "edad": 2,
+      "foto": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80"
+    },
+    {
+      "nombre": "Copito",
+      "tipo": "conejo",
+      "raza": "Belier",
+      "edad": 1,
+      "foto": "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=600&q=80",
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "nombre": "Pelusa",
+      "tipo": "hamster",
+      "raza": "Sirio",
+      "edad": 1,
+      "foto": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=600&q=80"
+    },
+    {
+      "id": "5",
+      "nombre": "Rico",
+      "tipo": "loro",
+      "raza": "Amazónico",
+      "edad": 7,
+      "foto": "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=600&q=80"
+    },
+    {
+      "id": "6",
+      "nombre": "Luna",
+      "tipo": "perro",
+      "raza": "Border Collie",
+      "edad": 3,
+      "foto": "https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=600&q=80"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

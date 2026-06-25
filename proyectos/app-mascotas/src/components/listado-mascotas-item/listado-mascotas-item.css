@@ -1,0 +1,49 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  border-left: 5px solid var(--color-azul);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.nombre {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-azul-oscuro);
+}
+
+.nombre:hover {
+  text-decoration: underline;
+}
+
+.detalles {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.etiqueta.tipo {
+  background-color: var(--mat-sys-tertiary);
+  color: var(--mat-sys-on-tertiary);
+  border-radius: 999px;
+  padding: 0.1rem 0.7rem;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}

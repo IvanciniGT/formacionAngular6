@@ -1,0 +1,43 @@
+<div class="boton-cancelable">
+  @if (!pidiendoConfirmacion) {
+    <!-- Estado inicial: el botón principal según el modo -->
+    @if (modo === 'icono') {
+      <button
+        mat-icon-button
+        [color]="color"
+        [matTooltip]="mensajeBoton"
+        (click)="pedirConfirmacion()"
+      >
+        <mat-icon>{{ icono }}</mat-icon>
+      </button>
+    } @else {
+      <button mat-raised-button [color]="color" (click)="pedirConfirmacion()">
+        <mat-icon>{{ icono }}</mat-icon>
+        {{ mensajeBoton }}
+      </button>
+    }
+  } @else {
+    <!-- Estado de confirmación: confirmar / cancelar -->
+    @if (modo === 'icono') {
+      <button
+        mat-icon-button
+        color="warn"
+        [matTooltip]="mensajeConfirmacion"
+        (click)="confirmar()"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-icon-button [matTooltip]="mensajeCancelacion" (click)="cancelar()">
+        <mat-icon>close</mat-icon>
+      </button>
+    } @else {
+      <button mat-raised-button color="warn" (click)="confirmar()">
+        <mat-icon>check</mat-icon>
+        {{ mensajeConfirmacion }}
+      </button>
+      <button mat-button (click)="cancelar()">
+        {{ mensajeCancelacion }}
+      </button>
+    }
+  }
+</div>
